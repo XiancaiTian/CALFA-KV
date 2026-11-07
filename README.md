@@ -58,7 +58,7 @@ Let $\bar q_{b,s,a}=R_s q_{b,s,a}$ denote the post-RoPE query and $e_{b,t,h}=\ha
 \qquad a\in\mathcal A_h.
 ```
 
-Let $\mathcal T=\{(b,s,t):0\le t\le s<T_b\}$, where $T_b$ is the window length. Take the mean over all valid causal position pairs and their associated query heads.
+Let $`\mathcal T=\{(b,s,t):0\le t\le s<T_b\}`$, where $T_b$ is the window length. Take the mean over all valid causal position pairs and their associated query heads.
 
 ```math
 M_h=\frac{1}{4|\mathcal T|}
@@ -109,7 +109,7 @@ For each head, use the unpermuted $\xi_{b,t,h}$ and accumulate its mean and seco
 -\bar\xi_h\bar\xi_h^{\top}.
 ```
 
-The RoPE pairs for this model are $\{j,j+64\}$, j=0,…,63. Each 8-dimensional group must contain 4 complete pairs. If $p_h(r)$ maps permuted channel r to its original channel, valid permutations satisfy the following constraints.
+The RoPE pairs for this model are $`\{j,j+64\}`$, j=0,…,63. Each 8-dimensional group must contain 4 complete pairs. If $p_h(r)$ maps permuted channel r to its original channel, valid permutations satisfy the following constraints.
 
 ```math
 p_h\in S_{128},\qquad
@@ -135,7 +135,7 @@ The two matching rounds produce 4-dimensional and then 8-dimensional groups. Con
 
 #### 4. Fit finite-capacity codebooks for the current grouping
 
-Let $I^K_{h,g}=\{p_h(8g+r):r=0,\ldots,7\}$ be the original channels in K group g. V uses contiguous groups $I^V_{h,g}=\{8g,\ldots,8g+7\}$. Code selection can be expressed as Euclidean nearest-neighbor search.
+Let $`I^K_{h,g}=\{p_h(8g+r):r=0,\ldots,7\}`$ be the original channels in K group g. V uses contiguous groups $`I^V_{h,g}=\{8g,\ldots,8g+7\}`$. Code selection can be expressed as Euclidean nearest-neighbor search.
 
 ```math
 i^K_{b,t,h,g}=\arg\min_{0\le c<256}\|z_{b,t,h,g}-C^K_{h,g,c}\|_2^2,
@@ -276,9 +276,9 @@ After selecting P/C, fix D/P and the stored N. The warm-start objective is the *
 \qquad E_{\mathrm{FIT}}=\sum_{b\in\mathrm{FIT48}}\|o_b^{\mathrm{ref}}\|_2^2.
 ```
 
-Here $\hat o_b=W_O\mathrm{concat}_a\sum_{t\le s}\hat p_{b,s,t,a}\hat v^{\mathrm{mix}}_{b,s,t,h(a)}$, and all 16 queries in each window contribute to the residual. In the historical region, reconstructed K determines the probabilities and reconstructed V supplies the values. Recent64 uses the original K and V. Softmax, weighted summation, and $W_O$ couple the two sides into a single output objective, so the loss cannot be written as the sum of two separate K/V reconstruction losses.
+Here $`\hat o_b=W_O\mathrm{concat}_a\sum_{t\le s}\hat p_{b,s,t,a}\hat v^{\mathrm{mix}}_{b,s,t,h(a)}`$, and all 16 queries in each window contribute to the residual. In the historical region, reconstructed K determines the probabilities and reconstructed V supplies the values. Recent64 uses the original K and V. Softmax, weighted summation, and $W_O$ couple the two sides into a single output objective, so the loss cannot be written as the sum of two separate K/V reconstruction losses.
 
-For each side $S\in\{K,V\}$, head, and group, use the starting codebook to define a fixed coordinate unit.
+For each side $`S\in\{K,V\}`$, head, and group, use the starting codebook to define a fixed coordinate unit.
 
 ```math
 \sigma^{S}_{h,g}=\max\!\left(10^{-6},
