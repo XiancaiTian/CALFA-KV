@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CALFA-KV layer calibration inputs",
+  "type": "object",
+  "required": ["model", "assets", "output", "layer", "input_ids", "input_ids_sha256", "teacher_layers", "cache_metadata", "projection"],
+  "properties": {
+    "model": {"type": "string", "description": "Pinned local Qwen3-4B-Instruct-2507 checkpoint"},
+    "assets": {"type": "string", "description": "CALFA zero-center initialization directory containing bundle/"},
+    "output": {"type": "string", "description": "New layer_00 .. layer_35 output directory"},
+    "layer": {"type": "integer", "minimum": 0, "maximum": 35},
+    "gpu": {"type": "integer", "minimum": 0, "description": "Logical CUDA device in the current visible device list"},
+    "port": {"type": "integer", "minimum": 1024, "maximum": 65535},
+    "input_ids": {"type": "string"},
+    "input_ids_sha256": {"$ref": "#/$defs/sha256"},
+    "teacher_layers": {"$ref": "#/$defs/windows"},
+    "cache_metadata": {"$ref": "#/$defs/windows"},
+    "projection": {
+      "type": "object", "required": ["file", "key", "sha256"],
+      "properties": {"file": {"type": "string"}, "key": {"type": "string"}, "sha256": {"$ref": "#/$defs/sha256"}}
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "capture": {
+      "type": "object", "required": ["file", "sha256"],
+      "properties": {"file": {"type": "string"}, "sha256": {"$ref": "#/$defs/sha256"}}
+    },
+    "windows": {
+      "type": "object", "minProperties": 64, "maxProperties": 64,
+      "propertyNames": {"pattern": "^(0|[1-9]|[1-5][0-9]|6[0-3])$"},
+      "additionalProperties": {"$ref": "#/$defs/capture"}
+    }
+  }
+}

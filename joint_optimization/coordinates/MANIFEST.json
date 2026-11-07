@@ -1,0 +1,197 @@
+{
+  "method": "CALFA-KV",
+  "files": [
+    {
+      "path": "NUMERICAL_PROVENANCE.json",
+      "bytes": 1392,
+      "sha256": "5fa0e2438977b66f4a74aef8758225735bdd97a6e2d692fc63e60ebf84aee895"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6465,
+      "sha256": "aa7a777f9ba66e252731a58c879289ffecc656f30a53b31b166bd8bf339019f4"
+    },
+    {
+      "path": "attention_proxy.py",
+      "bytes": 2899,
+      "sha256": "02e8f99b2d8ebb42a3668967725e370a93a6d47ddb89e7859da5ff782365512c"
+    },
+    {
+      "path": "config.json",
+      "bytes": 3991,
+      "sha256": "69199f7796f61f38eda867bb8aca33118b99072cc1ac070b5148a2307ff44230"
+    },
+    {
+      "path": "finite_rate_groups.py",
+      "bytes": 12322,
+      "sha256": "6fcbc6012d79f7680d8cbd7b8475f78e25365e02d83282323d2e51f688495539"
+    },
+    {
+      "path": "initialization/bundle/codebook.pt",
+      "bytes": 58765198,
+      "sha256": "76b448e10d7bbb4550ae394f5bea3e9d088c8180bbb509990522c3585864433b"
+    },
+    {
+      "path": "initialization/bundle/codebook_v.pt",
+      "bytes": 58032924,
+      "sha256": "cf37c4311145b8b14ce8cfcbef482932b8c82f390abb2da573e9fa3510a1dbd8"
+    },
+    {
+      "path": "initialization/bundle/k_rotation_qqt_r_h_pbr.pt",
+      "bytes": 2370434,
+      "sha256": "b3f1bcb81fd2b1c18a31ee0b9fa3e10dd495254bc96f91847ce45ee00a347f97"
+    },
+    {
+      "path": "initialization/bundle/v_rotation_sst_r_h_pbr.pt",
+      "bytes": 2370434,
+      "sha256": "7db9dd1c82401f33cdbdc67792231e2f78eaa567e26b88862548483f076971c3"
+    },
+    {
+      "path": "initialization/wp.pkl",
+      "bytes": 450764,
+      "sha256": "886131e135d53faf22716a0aa1b00613763f5276ad6677878264045aeec5eff2"
+    },
+    {
+      "path": "inputs/input_ids.json",
+      "bytes": 586553,
+      "sha256": "22e6f89322efaab4fa859da3931b5602ddd81c6a6ca4cf89cd205da857e02d74"
+    },
+    {
+      "path": "inputs/input_ids_chat2056.json",
+      "bytes": 727735,
+      "sha256": "db8454fd677bbe509208cc7febee12472a72cbf42e308a6e4b989f5a0005c9e2"
+    },
+    {
+      "path": "inputs/manifest.json",
+      "bytes": 283,
+      "sha256": "8b989549bfa9bb6b4a9e3aa239e99de4577fee832cf4697e23f0fb38c9849943"
+    },
+    {
+      "path": "pair_groups.py",
+      "bytes": 2899,
+      "sha256": "e4060412e94d6ffa2c96cd37a49d9ddb4c219a356961d2f560e9120b22cac4c5"
+    },
+    {
+      "path": "run_group_search.py",
+      "bytes": 3990,
+      "sha256": "3823a1b7320ac1f1b98ba09f62ad88a52c9889dead3980f8ea7e7775682f4c27"
+    },
+    {
+      "path": "verify.py",
+      "bytes": 5120,
+      "sha256": "f65fe0796153efa2a224f8f0275d662c51a0634d35c357e5da3ff1501e46520c"
+    }
+  ],
+  "reused_sources": [
+    {
+      "path": "tools/prepare_coordinates.py",
+      "bytes": 17267,
+      "sha256": "1a39bf1353530bb32000350f85ecee575776220cc59879faa7dac1f473650207"
+    },
+    {
+      "path": "../backend/python/calfa_scale.py",
+      "bytes": 3734,
+      "sha256": "feaad2316ac8e9a28228d8cb4c163a33bd9634bd40ce5d536714aa8f7f3861e9"
+    },
+    {
+      "path": "../backend/python/calfa_fisher.py",
+      "bytes": 9543,
+      "sha256": "504f5920bec89c45e7772719821a1e73e36b58c8d15e32f2e104ad4be12a9fa1"
+    },
+    {
+      "path": "../backend/python/calfa_calibration.py",
+      "bytes": 1838,
+      "sha256": "6a04e313473ee753cd60eb466ab0876dcf79399e430fd7e04f2ed5cf06fd4a02"
+    },
+    {
+      "path": "../backend/kvquant/kvquant/frozen_training.py",
+      "bytes": 8043,
+      "sha256": "f8501936e00f4a8f7b4a74260d53440fd099eea7c7566a5941138f89a110bf31"
+    },
+    {
+      "path": "../backend/kvquant/kvquant/gpu_kmeans.py",
+      "bytes": 8086,
+      "sha256": "c61d68dfef4d4528a2a42614a06519f06075df1e8d02a8381adb67bf88f03391"
+    },
+    {
+      "path": "core/artifact_io.py",
+      "bytes": 511,
+      "sha256": "6e22fb6224e1da9b64786da0a282c7d045579e7ba865417527c6c2aee020a861"
+    },
+    {
+      "path": "core/attention_objective.py",
+      "bytes": 5788,
+      "sha256": "f9abded56de2a4f026ade5c942e79fb9a9add380fd5df1a8b635fe2132fc297a"
+    },
+    {
+      "path": "core/calibration.py",
+      "bytes": 7897,
+      "sha256": "3147c3c6ea7b7c891e2094d9e6b0f3f06597308031fc330a8ae08e3c337010c1"
+    },
+    {
+      "path": "core/direction.py",
+      "bytes": 3240,
+      "sha256": "c940c2a4af235df8b8caf7d585fe88fc5b4cc1a8b863688a0a739048fd14f34c"
+    },
+    {
+      "path": "core/gauss_newton.py",
+      "bytes": 5703,
+      "sha256": "ee904656b454e247622cf13eabcb1476b60bcfc50aeb3a04580114aa111d864c"
+    },
+    {
+      "path": "core/grouping.py",
+      "bytes": 15457,
+      "sha256": "77da40b7d5ad9805262499334c2daa2a64f3acc92196e6073f36b3c7300dcb84"
+    },
+    {
+      "path": "core/grouping_metrics.py",
+      "bytes": 8169,
+      "sha256": "78fa52c91df6946e6b97efca0e1a2442a4d3d9b8133487764e7226064de8b827"
+    },
+    {
+      "path": "core/grouping_rules.py",
+      "bytes": 4581,
+      "sha256": "c6f11ce26c9832162e716bbdb0a14b2730a1762186679ef46814f40f4361bf26"
+    },
+    {
+      "path": "core/initial_assets.py",
+      "bytes": 2028,
+      "sha256": "58b0fef476768c502124b6289fd8743929c03bcd1cd9d7d2e3db59ee902db72c"
+    },
+    {
+      "path": "core/initialize_codebooks.py",
+      "bytes": 12512,
+      "sha256": "a0343bd603a10a030321447e308d9a7febf9666a548b5c09fea1d35109609427"
+    },
+    {
+      "path": "core/kv_objective.py",
+      "bytes": 6539,
+      "sha256": "a73e5ded79bcce09e8d02736a6116d8f320fbf7c5f876ca2807de6388217f86c"
+    },
+    {
+      "path": "core/native_output.py",
+      "bytes": 6090,
+      "sha256": "1c2d8f6b2d0bca560f651ca2f6878efa3f81fccc4fb98aef5f2f126867349ca4"
+    },
+    {
+      "path": "core/objective.py",
+      "bytes": 5493,
+      "sha256": "32086a226329993b7233299d655aa8f1086d23afc5f091229ca72fc97a27e9c2"
+    },
+    {
+      "path": "core/policy.py",
+      "bytes": 1221,
+      "sha256": "7de13700c11ba715011f957c72f329e4b967f3cc6cbc08ffe99ed26d8b42bd2c"
+    },
+    {
+      "path": "core/problem.py",
+      "bytes": 9332,
+      "sha256": "e9a40c718df7a7a31c3d61cea3fb9046665c72fc7df0bdbc978c0bef2a2d61c5"
+    },
+    {
+      "path": "core/vector_codec.py",
+      "bytes": 3130,
+      "sha256": "b8c0dcd5aba7a0530b7e04af9c173ec80229e279672a2c9247c7d024b4630ff2"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "method": "CALFA-KV",
+  "recorded_utc": "2026-11-03T06:11:00.317369+00:00",
+  "scope": "CALFA namespace/consolidation, unchanged numerical assets, two core method parts and end-to-end orchestration",
+  "checks": {
+    "original_8_CPU_CUDA_tests": {
+      "passed": true,
+      "seconds": 40.731,
+      "coverage": [
+        "fixed-scale signed-gradient chain rule",
+        "coordinate identity",
+        "quantized-only center restore",
+        "Anchor top56/ties/request isolation",
+        "Fisher regularization",
+        "native CUDA reconstruction/score/Anchor K/V overrides",
+        "CUDA Graph cache replay",
+        "36-layer verified export"
+      ]
+    },
+    "pipeline_plan_tests": {
+      "passed": true,
+      "tests": 2,
+      "seconds": 0.036,
+      "coverage": [
+        "same-bundle Anchor-to-serving plan",
+        "36-layer output/input/config binding and rejection of mismatches"
+      ]
+    },
+    "config_namespace_test": {
+      "passed": true,
+      "scope": "Static file identities and current module/capture field resolution; no model activations used",
+      "seconds": 0.223
+    },
+    "joint_objective_checks": {
+      "passed": true,
+      "coverage": "K/V/A/mu JVP finite differences, adjoint consistency, frozen scale smooth anchor and causal masks",
+      "maximum_relative_FD_error": 1.1737515167084713e-08
+    },
+    "numeric_asset_migration": {
+      "passed": true,
+      "files": 9,
+      "numerical_leaves": 18706,
+      "all_values_exact": true,
+      "metadata_only": true
+    },
+    "optimized_bundle": {
+      "passed": true,
+      "G": 8,
+      "bits": 8,
+      "coordinate_sha256": "489a29e4c5e7f0c5c2e10bc0827193642e9f994ab56f1a62c11fcc5b14f73535",
+      "anchor_fisher_checked": false
+    },
+    "coordinate_assets": {
+      "passed": true,
+      "pair_constraints": true,
+      "finite_rate_passes": true,
+      "matched_group_codebook_rules": true,
+      "stored_scale_batch_and_permutation_invariant": true
+    },
+    "syntax": {
+      "passed": true,
+      "python_files": 1793,
+      "encoding": "utf-8-sig accommodates inherited BOM",
+      "cli_help": 4,
+      "bash_syntax": true
+    },
+    "public_document_links": {
+      "passed": true
+    },
+    "namespace": {
+      "passed": true,
+      "legacy_name_occurrences_in_active_code_and_public_docs": 0,
+      "attribution_exceptions": [
+        "LICENSE",
+        "NOTICE",
+        "SOURCES.md",
+        "UPSTREAM_SOURCE_MANIFEST.json",
+        "SOURCE_ASSET_PROVENANCE.json"
+      ]
+    },
+    "original_method_scope": {
+      "passed": true,
+      "files_verified": 7714,
+      "files_changed": 0
+    }
+  },
+  "environment": {
+    "container": "local CUDA validation container",
+    "python": "3.11",
+    "torch": "2.5.1+cu121",
+    "gpu": "RTX 4090",
+    "triton": "3.5.1",
+    "triton_install": "temporary test-only directory; base installation unchanged"
+  },
+  "test_import_substitutes": [
+    "sglang.srt.utils.is_hip=False for focused native-kernel import",
+    "dummy sglang.srt.environ for focused native-kernel import"
+  ],
+  "cuda_tolerances": {
+    "reconstruction": {
+      "atol": 2e-06,
+      "rtol": 2e-05
+    },
+    "score": {
+      "atol": 0.0003,
+      "rtol": 3e-06
+    },
+    "anchor_logits": {
+      "atol": 1e-06,
+      "rtol": 2e-05
+    },
+    "anchor_V": "exact"
+  },
+  "not_executed": [
+    "fresh joint GPU training",
+    "fresh combined Anchor Fisher calibration",
+    "full SGLang model service",
+    "complete hybrid prefill/decode end-to-end model test",
+    "v9 accuracy benchmark"
+  ],
+  "source_whitespace": "15 shared-backend files retain inherited upstream whitespace. Extracted method-core EOF blank lines have been removed; no whole-framework reformat.",
+  "publication": {
+    "local_commit_only": true,
+    "remote_push": false
+  }
+}

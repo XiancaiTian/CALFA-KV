@@ -1,0 +1,12 @@
+{
+  "formal_admitted": true,
+  "input_ids_sha256": "22e6f89322efaab4fa859da3931b5602ddd81c6a6ca4cf89cd205da857e02d74",
+  "windows": 64,
+  "seqlen": 2048,
+  "mixture": {
+    "gpqa": 48,
+    "code": 16
+  },
+  "model_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "seed": 0
+}

@@ -1,0 +1,19 @@
+{
+  "scope": "Only missing numerical kernels; common function bodies of both original grouping passes were identical.",
+  "functions": {
+    "sha": "7eba10f3454c547c2ab40abc9e7ba149abe067b6ef2c6e9f3636e7866a8910a0",
+    "read": "584a838d11f13dabdeb23e17257ca63c6b9a37c39b24c68f245bbdd895f564c9",
+    "save": "cc85ecb68fd32fe25df95d0a26ded8e3cae7325bf28883096e63f89848152ee6",
+    "indices": "1eff27c71549ab911354f3b10ee6ca10884462938c0466841ca52d0195736307",
+    "gather": "2e5e26a60482c0a1661f7c7e43ba1198daaf3873ed21a90b5e6c68f3d644aa2a",
+    "group_weights": "0d58ebe5972a53d11e5b9cb2f9cdff44e24c24c33e5360d35b180a664a751da0",
+    "proxy_fit": "13a314b184f6e079437d2defcba3ecb57ddcccca2737d99767ab7fee005ae1b5",
+    "evaluate": "37726181537119408e95aa04f1f9751b8aab46416ee2dd88a025e660fed2feb2",
+    "fit_score": "b6cdab6363a0b3d1d0563bc7af16f45b9ddf5f80a9824c805129484c7e8f4c86",
+    "total": "92e40948cae848a104e8c029e3c5d772c28d9be5e8687aa3122d02b74d1cf739",
+    "definitions": "4b8a31a38d0dc853d053ecacd1ee8647f2d4aa931c61a68166c8c0437110791b",
+    "attention_score": "eb8a4eff7a309709e9153462df24e9cf43037cb888d16615f1e2809e780c67e6",
+    "search_layer": "3dd9ef60d185082ac3f0d7e42efde3ac9f6a48ed7e782c140c60a87ebc0f2652"
+  },
+  "adaptation": "search_layer reads pass_index for group pairing. No other numerical function changed. Pilot/resource/Git orchestration was not imported."
+}

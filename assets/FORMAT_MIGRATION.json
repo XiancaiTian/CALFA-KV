@@ -1,0 +1,69 @@
+{
+  "method": "CALFA-KV",
+  "format_only": true,
+  "records": [
+    {
+      "path": "assets/optimized/codebook.pt",
+      "before_sha256": "a691fb3362d29a246b05478d075820e281e7eebcf2031e92dab5514ce287b2d3",
+      "after_sha256": "4aca87ebc500785a5f99d07e98cdfdd119fdfba952cb25d9e9b34b841bfbcfc4",
+      "numerical_leaves": 4617,
+      "all_numerical_values_exact": true
+    },
+    {
+      "path": "assets/optimized/v_rotation_sst_r_h_pbr.pt",
+      "before_sha256": "5b09b62bec6000741332bfb026ed0e8089a47ce19e842d7a50c3910d5a6d1374",
+      "after_sha256": "7db9dd1c82401f33cdbdc67792231e2f78eaa567e26b88862548483f076971c3",
+      "numerical_leaves": 36,
+      "all_numerical_values_exact": true
+    },
+    {
+      "path": "assets/optimized/k_rotation_qqt_r_h_pbr.pt",
+      "before_sha256": "d303c54c69fa075bf4168ae3134873cc9e674f26a7b82b9a80daf66d3cf927f8",
+      "after_sha256": "b3f1bcb81fd2b1c18a31ee0b9fa3e10dd495254bc96f91847ce45ee00a347f97",
+      "numerical_leaves": 36,
+      "all_numerical_values_exact": true
+    },
+    {
+      "path": "assets/optimized/codebook_v.pt",
+      "before_sha256": "1ff0d44cf8c0fd9c9af393763713189842f0fe6da7ac980898f22330490a939e",
+      "after_sha256": "5c1d08967313cd9ddf45f40637c5f5e67d79e43e2f7300150a07deb639f9ee3d",
+      "numerical_leaves": 4611,
+      "all_numerical_values_exact": true
+    },
+    {
+      "path": "joint_optimization/coordinates/initialization/bundle/codebook.pt",
+      "before_sha256": "cea5aa078d0ce5a171e9949960285844d797e7825aca8fd808800ff004cb505b",
+      "after_sha256": "76b448e10d7bbb4550ae394f5bea3e9d088c8180bbb509990522c3585864433b",
+      "numerical_leaves": 4615,
+      "all_numerical_values_exact": true
+    },
+    {
+      "path": "joint_optimization/coordinates/initialization/bundle/v_rotation_sst_r_h_pbr.pt",
+      "before_sha256": "5b09b62bec6000741332bfb026ed0e8089a47ce19e842d7a50c3910d5a6d1374",
+      "after_sha256": "7db9dd1c82401f33cdbdc67792231e2f78eaa567e26b88862548483f076971c3",
+      "numerical_leaves": 36,
+      "all_numerical_values_exact": true
+    },
+    {
+      "path": "joint_optimization/coordinates/initialization/bundle/k_rotation_qqt_r_h_pbr.pt",
+      "before_sha256": "d303c54c69fa075bf4168ae3134873cc9e674f26a7b82b9a80daf66d3cf927f8",
+      "after_sha256": "b3f1bcb81fd2b1c18a31ee0b9fa3e10dd495254bc96f91847ce45ee00a347f97",
+      "numerical_leaves": 36,
+      "all_numerical_values_exact": true
+    },
+    {
+      "path": "joint_optimization/coordinates/initialization/bundle/codebook_v.pt",
+      "before_sha256": "8d1be87a3a136fd9eae08ac84efda2cbc3472050169d1c9b1dbaeca6b9bb77e6",
+      "after_sha256": "cf37c4311145b8b14ce8cfcbef482932b8c82f390abb2da573e9fa3510a1dbd8",
+      "numerical_leaves": 4611,
+      "all_numerical_values_exact": true
+    },
+    {
+      "path": "joint_optimization/coordinates/initialization/wp.pkl",
+      "before_sha256": "e4eed3f3aeb2b5828a07ed0df399771abe596d5b6d9ca3b85cf32912baab3d1f",
+      "after_sha256": "886131e135d53faf22716a0aa1b00613763f5276ad6677878264045aeec5eff2",
+      "numerical_leaves": 108,
+      "all_numerical_values_exact": true
+    }
+  ]
+}
