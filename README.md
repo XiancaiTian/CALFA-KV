@@ -44,7 +44,7 @@ We omit the layer index below. The window index is b, the key and query position
 |---|---|
 | $k_{b,t,h},v_{b,t,h}$ | K/V for one KV head, each with 128 dimensions. Concatenating all H=8 heads gives 1024 dimensions |
 | $\mathcal A_h$, $R_t$ | The 4 query heads associated with KV head h and the RoPE matrix at position t |
-| $D=\operatorname{diag}(w)$, $P$ | Positive diagonal channel scaling and a block permutation matrix organized by head, both acting on 1024-dimensional K |
+| $D=\mathrm{diag}(w)$, $P$ | Positive diagonal channel scaling and a block permutation matrix organized by head, both acting on 1024-dimensional K |
 | $\xi_{b,t}$, $z_{b,t}=P\xi_{b,t}$ | Normalized K before and after permutation. Each head is divided into G=16 groups of 8 dimensions |
 | $C^K_{h,g},C^V_{h,g}$ | Each group has B=256 codewords per side, each with 8 dimensions and stored in FP16 |
 
@@ -79,11 +79,11 @@ Thus, every head satisfies $128^{-1}\sum_j w_{h,j}^2=1$. D scales up directions 
 
 #### 2. Define encoding coordinates using the stored FP16 magnitude
 
-At this stage, the center is zero and the radial weights are D. First compute $x=\operatorname{FP32}(k)\odot w$ in the original head-major order, then compute one magnitude shared across all 8 KV heads. To fix the reduction order used in practice, flatten x into 1024 channels and denote FP32 rounding by $\operatorname{fl}_{32}$.
+At this stage, the center is zero and the radial weights are D. First compute $x=\mathrm{FP32}(k)\odot w$ in the original head-major order, then compute one magnitude shared across all 8 KV heads. To fix the reduction order used in practice, flatten x into 1024 channels and denote FP32 rounding by $\mathrm{fl}_{32}$.
 
 ```math
-a_i^{(0)}=\operatorname{fl}_{32}(x_i^2),\qquad
- a_i^{(u+1)}=\operatorname{fl}_{32}
+a_i^{(0)}=\mathrm{fl}_{32}(x_i^2),\qquad
+ a_i^{(u+1)}=\mathrm{fl}_{32}
  \!\left(a_{2i}^{(u)}+a_{2i+1}^{(u)}\right),
 \quad u=0,\ldots,9.
 ```
@@ -91,9 +91,9 @@ a_i^{(0)}=\operatorname{fl}_{32}(x_i^2),\qquad
 Each multiplication, addition, division, and square root follows the implementation's FP32 arithmetic. The resulting magnitude is then stored in FP16.
 
 ```math
-N_{b,t}=\operatorname{FP16}\!\left[
+N_{b,t}=\mathrm{FP16}\!\left[
 \max\!\left(10^{-4},\sqrt{a_0^{(10)}/1024}\right)\right],\qquad
-\xi_{b,t}=\frac{x_{b,t}}{\operatorname{FP32}(N_{b,t})},\qquad
+\xi_{b,t}=\frac{x_{b,t}}{\mathrm{FP32}(N_{b,t})},\qquad
 z_{b,t}=P\xi_{b,t}.
 ```
 
@@ -121,7 +121,7 @@ $S_{128}$ is the set of permutations of the 128 channels. Define the covariance-
 
 ```math
 \gamma_h(I)=\det\!\left(\Sigma_h[I,I]+\eta_h I_{|I|}\right)^{1/|I|},
-\qquad \eta_h=\max\!\left(10^{-30},10^{-4}\operatorname{tr}(\Sigma_h)/128\right).
+\qquad \eta_h=\max\!\left(10^{-30},10^{-4}\mathrm{tr}(\Sigma_h)/128\right).
 ```
 
 Start with the 64 RoPE pairs as units. At each round, build a complete graph over the current units and choose the perfect matching that minimizes the sum of merge costs.
@@ -147,7 +147,7 @@ In practice, code selection uses the native FP16 codebook path and its fixed ope
 
 ```math
 \hat k_{b,t}=D^{-1}P^{\top}
-\!\left[\operatorname{FP32}(N_{b,t})\hat z_{b,t}\right],
+\!\left[\mathrm{FP32}(N_{b,t})\hat z_{b,t}\right],
 \qquad
 \hat v_{b,t,h,g}=C^V_{h,g,i^V_{b,t,h,g}}.
 ```
@@ -164,7 +164,7 @@ F^V_{b,t,h,j}=\left(\frac{\partial\mathcal L_{\mathrm{CE}}^{(b)}}
 K gradients are also captured after `k_norm` and before RoPE, and V gradients are captured at the output of `v_proj`. Signed gradients are converted to FP32 before squaring. The **Anchor Fisher weights** in Part 2 are calibrated separately after freezing the final center, radial parameters, and codebooks. With the stored N fixed, initial codebook fitting uses one scalar weight per token and group.
 
 ```math
-\omega^K_{b,t,h,g}=\operatorname{FP32}(N_{b,t})^2
+\omega^K_{b,t,h,g}=\mathrm{FP32}(N_{b,t})^2
 \sum_{j\in I^K_{h,g}}\frac{F^K_{b,t,h,j}}{\max(w_{h,j}^2,10^{-12})},
 \qquad
 \omega^V_{b,t,h,g}=\sum_{j\in I^V_{h,g}}F^V_{b,t,h,j}.
@@ -276,7 +276,7 @@ After selecting P/C, fix D/P and the stored N. The warm-start objective is the *
 \qquad E_{\mathrm{FIT}}=\sum_{b\in\mathrm{FIT48}}\|o_b^{\mathrm{ref}}\|_2^2.
 ```
 
-Here $\hat o_b=W_O\operatorname{concat}_a\sum_{t\le s}\hat p_{b,s,t,a}\hat v^{\mathrm{mix}}_{b,s,t,h(a)}$, and all 16 queries in each window contribute to the residual. In the historical region, reconstructed K determines the probabilities and reconstructed V supplies the values. Recent64 uses the original K and V. Softmax, weighted summation, and $W_O$ couple the two sides into a single output objective, so the loss cannot be written as the sum of two separate K/V reconstruction losses.
+Here $\hat o_b=W_O\mathrm{concat}_a\sum_{t\le s}\hat p_{b,s,t,a}\hat v^{\mathrm{mix}}_{b,s,t,h(a)}$, and all 16 queries in each window contribute to the residual. In the historical region, reconstructed K determines the probabilities and reconstructed V supplies the values. Recent64 uses the original K and V. Softmax, weighted summation, and $W_O$ couple the two sides into a single output objective, so the loss cannot be written as the sum of two separate K/V reconstruction losses.
 
 For each side $S\in\{K,V\}$, head, and group, use the starting codebook to define a fixed coordinate unit.
 
@@ -295,7 +295,7 @@ In each round, hold the current native hard indices fixed. Let r(u) be the norma
 ```
 
 ```math
-C_{\mathrm{trial}}=\operatorname{FP16}\!\left[\sigma\odot(u+\alpha_m d)\right],
+C_{\mathrm{trial}}=\mathrm{FP16}\!\left[\sigma\odot(u+\alpha_m d)\right],
 \qquad \alpha_m=0.02\,2^{-m},\quad m=0,\ldots,11.
 ```
 
@@ -318,9 +318,9 @@ We omit the layer index. Let k be the token's 1024-dimensional K after `k_norm` 
 
 ```math
 \begin{aligned}
-N_t&=\operatorname{FP16}\!\left[\max\!\left(10^{-4},\sqrt{\|A(k_t-\mu)\|_2^2/1024}\right)\right],\\
-z_t&=PD(k_t-\mu)/\operatorname{FP32}(N_t),\\
-\hat k_t&=\mu+D^{-1}P^\top\!\left[\operatorname{FP32}(N_t)\hat z_t\right].
+N_t&=\mathrm{FP16}\!\left[\max\!\left(10^{-4},\sqrt{\|A(k_t-\mu)\|_2^2/1024}\right)\right],\\
+z_t&=PD(k_t-\mu)/\mathrm{FP32}(N_t),\\
+\hat k_t&=\mu+D^{-1}P^\top\!\left[\mathrm{FP32}(N_t)\hat z_t\right].
 \end{aligned}
 ```
 
@@ -355,7 +355,7 @@ Anchor Fisher provides importance weights for ranking historical positions. Its 
 First compute the actual FP16 N using the final μ/A. Transform the **signed gradients** to the final encoding coordinates before squaring and aggregating them. The transform treats stored N as fixed side information, omitting inversion of its full dynamic Jacobian.
 
 ```math
- g_t^z=\operatorname{FP32}(N_t)\,PD^{-1}g_t^K,\qquad
+ g_t^z=\mathrm{FP32}(N_t)\,PD^{-1}g_t^K,\qquad
  F_K=\mathbb E[(g_t^z)^2],\qquad
  F_V=\mathbb E[(g_t^V)^2].
 ```
@@ -370,9 +370,9 @@ Candidates come only from tokens entering quantized history, including the quant
 
 ```math
 \begin{aligned}
-e_t^K&=PD(k_t-\tilde k_t)/\operatorname{FP32}(N_t),\qquad e_t^V=v_t-\tilde v_t,\\
+e_t^K&=PD(k_t-\tilde k_t)/\mathrm{FP32}(N_t),\qquad e_t^V=v_t-\tilde v_t,\\
 s_{t,h}&=\sum_j\left[F^K_{h,j}(e^K_{t,h,j})^2+F^V_{h,j}(e^V_{t,h,j})^2\right],\\
-\mathcal A_{r,l,h}&=\operatorname{Top56}_{t\in\mathrm{quantized\ history}}s_{t,h}.
+\mathcal A_{r,l,h}&=\mathrm{Top56}_{t\in\mathrm{quantized\ history}}s_{t,h}.
 \end{aligned}
 ```
 

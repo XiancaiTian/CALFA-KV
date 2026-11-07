@@ -35,14 +35,14 @@ R_t^\top\bar q_{s,a}\bar q_{s,a}^\top R_t,\qquad m_{h,j}=(M_h)_{jj}.
 ```math
 \epsilon_h=\max(10^{-30},10^{-6}\max_j m_{h,j}),\quad
 b_{h,j}=\max(m_{h,j},\epsilon_h),\quad
-w_{h,j}=\sqrt{b_{h,j}/\operatorname{mean}_i b_{h,i}}.
+w_{h,j}=\sqrt{b_{h,j}/\mathrm{mean}_i b_{h,i}}.
 ```
 
 D changes the error coordinates and remains positive so that the transform is invertible. Once computed, D is stored in FP32 and fixed. Initialization uses μ=0 and A=D.
 
 ```math
-N_t=\operatorname{FP16}\!\left[\max\!\left(10^{-4},\sqrt{\|Dk_t\|^2/1024}\right)\right],\qquad
-z_t=PDk_t/\operatorname{FP32}(N_t).
+N_t=\mathrm{FP16}\!\left[\max\!\left(10^{-4},\sqrt{\|Dk_t\|^2/1024}\right)\right],\qquad
+z_t=PDk_t/\mathrm{FP32}(N_t).
 ```
 
 In practice, computing N uses an FP32 pairwise addition tree over adjacent channels in the original head-major order. N is then stored in FP16. Apply P after computing N. Statistics, training, native encoding, and cache migration all use the same stored N. V uses unit scale. See [calfa_scale.py](../../backend/python/calfa_scale.py).
@@ -50,8 +50,8 @@ In practice, computing N uses an FP32 pairwise addition tree over adjacent chann
 Initial grouping uses the covariance Σ of normalized K accumulated in FP64. Define the following merge cost for a candidate channel set I.
 
 ```math
-\operatorname{cost}(I)=\det\!\left(\Sigma_h[I,I]+\varepsilon_h I_{|I|}\right)^{1/|I|},\qquad
-\varepsilon_h=\max(10^{-30},10^{-4}\operatorname{tr}\Sigma_h/d).
+\mathrm{cost}(I)=\det\!\left(\Sigma_h[I,I]+\varepsilon_h I_{|I|}\right)^{1/|I|},\qquad
+\varepsilon_h=\max(10^{-30},10^{-4}\mathrm{tr}\Sigma_h/d).
 ```
 
 Start with each {j,j+64} pair as a complete unit. Use minimum-weight perfect matching to merge 2-dimensional units into 4-dimensional groups and then into 8-dimensional groups. The low and high members of each pair remain adjacent in the permutation to preserve RoPE pairing.
@@ -68,7 +68,7 @@ C_b\leftarrow\frac{\sum_{t:a_t=b}\omega_t x_t}{\sum_{t:a_t=b}\omega_t}.
 Codebook-initialization Fisher weights use gradients captured after k_norm and before RoPE for K, and at the output node for V. The N/D compensation uses the fixed stored N.
 
 ```math
-\omega^K_{t,h,g}=\operatorname{FP32}(N_t)^2
+\omega^K_{t,h,g}=\mathrm{FP32}(N_t)^2
 \sum_{j\in I_{h,g}}F^K_{t,h,j}/\max(w_{h,j}^2,10^{-12}),\qquad
 \omega^V_{t,h,g}=\sum_{j\in I^V_{h,g}}F^V_{t,h,j}.
 ```
